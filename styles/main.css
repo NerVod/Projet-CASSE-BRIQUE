@@ -8,6 +8,7 @@ body {
   color: white;
 }
 
+/* zone de jeu */
 .playfield {
   background: whitesmoke;
   width: 1040px;
@@ -20,4 +21,49 @@ body {
   box-shadow: 2px 4px 4px black;
   z-index: 0;
   cursor: none;
+}
+
+.ball {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: dodgerblue;
+  box-shadow: 1px 2px 2px grey;
+}
+
+/* parties briques */
+.brick {
+  display: inline-block;
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  border: solid 2px black;
+  box-shadow: 1px 2px 2px grey;
+  pointer-events: none;
+}
+.blueBrick {
+  background: skyblue;
+}
+
+.redBrick {
+  background: tomato;
+}
+.goldBrick {
+  background: gold;
+}
+.greenBrick {
+  background: green;
+}
+
+/*  texte indication niveau */
+.lblCurrentLevel {
+  position: absolute;
+  left: 40%;
+  top: 44%;
+  z-index: 1;
+  font-size: 400%;
+  font-weight: bold;
+  text-shadow: 1px 1px 17px black;
+  pointer-events: none;
 }
