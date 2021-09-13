@@ -67,3 +67,16 @@ body {
   text-shadow: 1px 1px 17px black;
   pointer-events: none;
 }
+
+/* raquette du jeu */
+.racket {
+  position: absolute;
+  width: 100px;
+  height: 14px;
+  bottom: 12px;
+  left: 320px;
+  border-radius: 4px;
+  background: goldenrod;
+  box-shadow: 1px 2px 2px grey;
+  pointer-events: none;
+}
