@@ -43,7 +43,7 @@ function drawRacket(e)
 	$('.racket').css ('left', racket.left + 'px');
 }
 
-
+// fonction à refactorer
 function drawBalls()
 {
 
@@ -59,7 +59,7 @@ function drawBalls()
 						}
 				       	e.left += e.hSpeed;
 						e.top += e.vSpeed;
-                        var nearBricks = bricks.filter(function (f)
+                        let nearBricks = bricks.filter(function (f)
  						   {
  							return f.top + 34 > e.top && f.left <= e.left && f.left + 100 >= e.left + ballSize;
 						   });
