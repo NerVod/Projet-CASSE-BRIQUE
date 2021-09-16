@@ -46,62 +46,17 @@ function drawRacket(e)
 // fonction à refactorer
 function drawBalls()
 {
-
-	balls.forEach (function (e)
-                   {
-						if (e.left > playfieldWidth - ballSize)
-						{
-							e.hSpeed = -e.hSpeed;
-						}
-						if (e.top > playfieldHeight - ballSize)
-						{
-							e.vSpeed = -e.vSpeed;
-						}
-				       	e.left += e.hSpeed;
-						e.top += e.vSpeed;
-                        let nearBricks = bricks.filter(function (f)
- 						   {
- 							return f.top + 34 > e.top && f.left <= e.left && f.left + 100 >= e.left + ballSize;
-						   });
- 				if (nearBricks.length > 0)
- 				{
- 				    $('.brick[data-id="' + nearBricks[0].id + '"]').remove();
- 				    bricks.splice(bricks.indexOf(nearBricks[0]), 1);
-				    e.vSpeed = -e.vSpeed;
- 				}
-				if (e.left < 0)
-				{
-					e.hSpeed = -e.hSpeed;
-				}
-				if (e.top < 0)
-				{
-					e.vSpeed = -e.vSpeed;
-				}
-				if (e.left > playfieldWidth)
-				{
-					e.hSpeed = -e.hSpeed;
-				}
-				if (e.top > playfieldHeight)
-				{
-					e.vSpeed = -e.vSpeed;
-				}
-				if (e.top > racket.top)
-				{
-					$('.ball[data-id="' + e.id + '"]').remove();
-					balls.splice(balls.indexOf(e), 1);
-				}
-				if (e.top + ballSize >= racket.top)
-				{
-					if (e.left >= racket.left && e.left <= racket.left + racket.width - ballSize)
-					{
-						e.vSpeed = -e.vSpeed;
+	balls.forEach (
+					function (e)
+                  	 {
+						   let nearBricks;
+						   moveBall(e)
+						   nearBricks = getNearBricks(e);
+						   touchBrick(e, nearBricks);
+						   checkBorders(e);
+						   checkRacket(e);
 					}
-				}
- 	 	       $('.ball[data-id="' + e.id + '"]').css({
-						left: e.left + 'px',
-						top: e.top + 'px'
-				});
-	   });
+	);
 }
 
 function drawPlayfield()
@@ -156,4 +111,75 @@ function showCurrentLevel()
  	$('.lblCurrentLevel')
  		.text('Niveau ' + (curLevel + 1))
  		.fadeOut(3000);
+}
+
+//fonctions refactoring de drawBalls
+
+function moveBall(e)
+{
+	e.left += e.hSpeed;
+	e.top += e.vSpeed;
+	$('.ball [data-id="' + e.id + '"]')
+		.css (
+				{
+					left : e.left + 'px',
+					top: e.top + 'px'
+				}
+		);
+}
+
+function getNearBricl(e)
+{
+	return bricks
+		.filter (
+			function(f)
+				{
+					return f.top + 34 > e.top && f.left <= e.left && f.left + 100 >= e.left + ballSize;
+				}
+		);
+}
+
+function touchBrick(e, nearBricks)
+{
+	if (nearBricks.length >0)
+		{
+			$('.brick [data-id="' + nearBricks[0].id + '"]').remove();
+			bricks.splice(bricks.indexOf(nearBricks[0]), 1);
+		}
+}
+
+function checkBorders(e)
+{
+	if (e.left < 0)
+		{
+			e.hSpeed = -e.hSpeed;
+		}
+	if (e.top < 0)
+		{
+			e.vSpeed = -e.vSpeed;
+		}
+	if (e.left > playdieldWidth - ballSize)
+		{
+			e.hSpeed = -e.hSpeed;
+		}
+	if (e.top > playfieldHeight - ballSize)
+		{
+			e.vSpeed = -e.vSpeed;
+		}
+}
+
+function checkRacket(e)
+{
+	if (e.top> racket.top)
+		{
+			$('.ball [data-id="' + e.id + '"]').remove();
+			balls.splice(balls.indexOf(e), 1);
+		}
+	if (e.top + ballSize >= racket.top)
+		{
+			if (e.left >= racket.left && e.left <= racket.left + racket.width - ballSize)
+				{
+					e.vSpeed = -e.vSpeed;
+				}
+		}
 }
