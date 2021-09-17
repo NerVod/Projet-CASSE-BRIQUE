@@ -14,7 +14,7 @@ function init()
     playfieldWidth = $('.playfield').width();
     playfieldHeight = $('.playfield').height();
 	drawPlayfield();
-	gameRefresh = setInterval(drawBalls, 10);
+	
 	$(window).on('mousemove', drawRacket);
 	racket = {width: $('.racket').width(), top: $('.racket').offset().top - $('.playfield').offset().top};
 }
@@ -100,7 +100,7 @@ function drawPlayfield()
 								{
 								   	if (i == bricks.length - 1)
 								    {
-			                           	addBall();
+			                           	showGamePanel();
 									}
 							     });
 				   });
@@ -182,4 +182,29 @@ function checkRacket(e)
 					e.vSpeed = -e.vSpeed;
 				}
 		}
+}
+
+function gameMessage(title, messageText, messageButton, buttonFunction)
+{
+	$('body').append('<div class="messageBox"><label class="lblMessageTitle">' + title + '</label><label class="lblMessage">' + messageText + '</label><button class="btnMessage">' + messageButton + '</button></div');
+	$('.btnMessage').on('click', buttonFunction);
+}
+
+function showGamePanel()
+{
+	gameMesage ("Casse-briques", "Petit jeu de raquette simple, servant de support d'entrainement au développement JavaScript et jQuery", "Cliquez pour lancer une partie" , StartGame);
+}
+function cleanMessage()
+{
+	$('.btnMesage')
+		.off();
+	$('.messageBox')
+		.remove();
+}
+
+function StartGame()
+{
+		cleanMessage();
+		addBall();
+		gameRefresh = setInterval(drawBalls, 10);
 }
