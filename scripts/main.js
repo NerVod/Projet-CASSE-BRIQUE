@@ -128,7 +128,7 @@ function moveBall(e)
 		);
 }
 
-function getNearBricl(e)
+function getNearBrick(e)
 {
 	return bricks
 		.filter (
@@ -192,19 +192,20 @@ function gameMessage(title, messageText, messageButton, buttonFunction)
 
 function showGamePanel()
 {
-	gameMesage ("Casse-briques", "Petit jeu de raquette simple, servant de support d'entrainement au développement JavaScript et jQuery", "Cliquez pour lancer une partie" , StartGame);
+	gameMessage ("Casse-briques", "Petit jeu de raquette simple, minimaliste, servant de support de formation au développement JavaScript et jQuery", "Cliquez pour lancer une partie", startGame, 'styles/images/logo_ENI.png');
 }
+
 function cleanMessage()
 {
-	$('.btnMesage')
-		.off();
+	$('.btnMessage')
+		.off ();
 	$('.messageBox')
 		.remove();
 }
 
-function StartGame()
+function startGame()
 {
-		cleanMessage();
-		addBall();
-		gameRefresh = setInterval(drawBalls, 10);
+ 	cleanMessage();
+	addBall(); 
+	gameRefresh = setInterval(drawBalls, 10);
 }
