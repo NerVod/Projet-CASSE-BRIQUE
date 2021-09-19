@@ -84,7 +84,7 @@ body {
 .messageBox {
   background: white;
   width: 500px;
-  height: 250px;
+  height: 280px;
   z-index: 1;
   position: absolute;
   left: 340px;
@@ -109,7 +109,7 @@ body {
   font-size: 170%;
   width: 100%;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
 .btnMessage {
@@ -129,4 +129,28 @@ body {
   position: absolute;
   left: 96px;
   text-align: center;
+}
+.logo {
+  position: absolute;
+  width: 60px;
+}
+
+.statusBar {
+  position: absolute;
+  width: 1000px;
+  height: 30px;
+  left: 80px;
+  top: 48px;
+}
+
+.lblPlayerScore {
+  font-size: 180%;
+}
+
+.lblBestScore {
+  position: absolute;
+  right: -20px;
+  bottom: -2px;
+  color: white;
+  font-size: 120%;
 }
